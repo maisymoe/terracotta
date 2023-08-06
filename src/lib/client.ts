@@ -1,5 +1,5 @@
 import { WebhookClient } from "discord.js";
-import { Bot, createBot } from "mineflayer";
+import { Bot, Plugin, createBot } from "mineflayer";
 
 export interface Config {
     server: {
@@ -17,6 +17,7 @@ export interface Config {
 
 export interface TerracottaClientOptions {
     config: Config;
+    mineflayerPlugins?: Plugin[];
 }
 
 export class TerracottaClient {
@@ -33,5 +34,7 @@ export class TerracottaClient {
             host: `scraft_${this.config.server.apiKey}.${this.config.server.host}`,
             port: this.config.server.port || 25565,
         });
+
+        if (options.mineflayerPlugins) this.bot.loadPlugins(options.mineflayerPlugins);
     }
 }

@@ -1,4 +1,5 @@
 import { codeBlock } from "discord.js";
+import { pathfinder } from "mineflayer-pathfinder";
 import { setupChatHandler } from "./handlers/chat";
 import { setupCommandHandler } from "./handlers/command";
 import { setupDataLink } from "./lib/data";
@@ -7,6 +8,7 @@ import { log } from "./lib/logging";
 
 export const client = new TerracottaClient({
     config: setupDataLink("config", true),
+    mineflayerPlugins: [pathfinder],
 });
 
 client.bot.once("spawn", async () => {
