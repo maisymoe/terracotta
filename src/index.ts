@@ -1,5 +1,5 @@
 import { codeBlock } from "discord.js";
-import { pathfinder } from "mineflayer-pathfinder";
+import { pathfinder, Movements } from "mineflayer-pathfinder";
 import { setupChatHandler } from "./handlers/chat";
 import { setupCommandHandler } from "./handlers/command";
 import { setupDataLink } from "./lib/data";
@@ -26,6 +26,7 @@ client.bot.once("spawn", async () => {
     
     await setupCommandHandler();
     await setupChatHandler(client);
+    client.bot.pathfinder.setMovements(new Movements(client.bot));
 
     console.log("Done!");
     client.bot.chat(`Terracotta loaded! See ${client.config.prefix}help.`);

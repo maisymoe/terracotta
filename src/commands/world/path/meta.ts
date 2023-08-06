@@ -1,6 +1,6 @@
 import { CommandOptions } from "../../../handlers/command";
 
 export default {
-    name: "subtest",
-    description: "Subcommand test :D",
+    name: "path",
+    description: "Pathfinding commands.",
 } as CommandOptions;
