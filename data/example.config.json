@@ -1,0 +1,12 @@
+{
+    "server": {
+        "apiKey": "",
+        "host": ""
+    },
+    "webhook": {
+        "id": "",
+        "token": ""
+    },
+    "username": "my_cool_bot",
+    "prefix": "m/"
+}
