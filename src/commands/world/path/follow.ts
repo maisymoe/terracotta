@@ -8,7 +8,8 @@ export default new Subcommand({
         const name = args[0] ?? username;
         const { entity } = client.bot.players[name];
 
-        if (!entity) return client.bot.chat(`I can't see ${name}...`);
+        const player = client.bot.players[name];
+        if (!player) return client.bot.chat(`I can't see ${name}...`);
 
         client.bot.pathfinder.setGoal(new goals.GoalFollow(entity, 1), true);
         client.bot.chat(`Now following ${name}.`);
