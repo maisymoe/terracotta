@@ -1,6 +1,6 @@
 {
     "name": "terracotta",
-    "description": "Scraft bot.",
+    "description": "Minecraft bot built with mineflayer.",
     "version": "1.0.0",
     "main": "dist/index.js",
     "scripts": {
@@ -23,6 +23,6 @@
         "type-fest": "^4.1.0",
         "typescript": "^5.1.6"
     },
-    "author": "Beef",
+    "author": "maisymoe",
     "license": "BSD-3-Clause"
 }

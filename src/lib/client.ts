@@ -1,6 +1,8 @@
 import { WebhookClient } from "discord.js";
 import { Bot, Plugin, createBot } from "mineflayer";
 
+const maybeScraftifyHost = (config: Config) => config.server.apiKey ? `scraft_${config.server.apiKey}.${config.server.host}` : config.server.host;
+
 export interface Config {
     server: {
         apiKey: string;
@@ -31,7 +33,8 @@ export class TerracottaClient {
 
         this.bot = createBot({
             username: this.config.username,
-            host: `scraft_${this.config.server.apiKey}.${this.config.server.host}`,
+            auth: this.config.server.apiKey ? "offline" : "microsoft",
+            host: maybeScraftifyHost(this.config),
             port: this.config.server.port || 25565,
         });
 
