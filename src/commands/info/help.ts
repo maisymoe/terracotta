@@ -3,14 +3,16 @@ import { Command, commands } from "../../handlers/command";
 export default new Command({
     name: "help",
     description: "Basic info about how to use the bot.",
-    handler: (client, args) => {
+    handler: (client, args, username) => {
+        const filteredCommands = client.config.superusers.includes(username) ? commands : commands.filter(c => !c.su);
+
         if (args.length === 0) {
             client.bot.chat(`=== Terracotta - ${client.config.prefix} ===`);
-            client.bot.chat(commands.map(c => c.name).join(", "));
+            client.bot.chat(filteredCommands.map(c => c.name).join(", "));
             client.bot.chat(`Refer to ${client.config.prefix}help <command name> for more.`);
         } else {
             const commandName = args[0];
-            const command = commands.find(c => c.name === commandName);
+            const command = filteredCommands.find(c => c.name === commandName);
             if (!command) return client.bot.chat(`No info found for ${client.config.prefix}${commandName}.`);
 
             if (typeof command.handler === "function") {

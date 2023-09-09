@@ -15,6 +15,11 @@ export interface Config {
     }
     username: string;
     prefix: string;
+    superusers: string[];
+    whitelist: {
+        enforce: boolean;
+        users: string[];
+    }
 }
 
 export interface TerracottaClientOptions {
