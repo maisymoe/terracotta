@@ -15,6 +15,7 @@ export interface Config {
     }
     username: string;
     prefix: string;
+    showJoinMessage: boolean;
     superusers: string[];
     whitelist: {
         enforce: boolean;

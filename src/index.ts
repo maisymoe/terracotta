@@ -30,5 +30,5 @@ client.bot.once("spawn", async () => {
     client.bot.pathfinder.setMovements(new Movements(client.bot));
 
     console.log("Done!");
-    client.bot.chat(`Terracotta loaded! See ${client.config.prefix}help.`);
+    if (client.config.showJoinMessage) client.bot.chat(`Terracotta loaded! See ${client.config.prefix}help.`);
 });
