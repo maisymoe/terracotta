@@ -3,32 +3,32 @@ import { Command, commands } from "../../handlers/command";
 export default new Command({
     name: "help",
     description: "Basic info about how to use the bot.",
-    handler: (client, args, username) => {
+    handler: (client, args, username, reply) => {
         const filteredCommands = client.config.superusers.includes(username) ? commands : commands.filter(c => !c.su);
 
         if (args.length === 0) {
-            client.bot.chat(`=== Terracotta - ${client.config.prefix} ===`);
-            client.bot.chat(filteredCommands.map(c => c.name).join(", "));
-            client.bot.chat(`Refer to ${client.config.prefix}help <command name> for more.`);
+            reply(`=== Terracotta - ${client.config.prefix} ===`);
+            reply(filteredCommands.map(c => c.name).join(", "));
+            reply(`Refer to ${client.config.prefix}help <command name> for more.`);
         } else {
             const commandName = args[0];
             const command = filteredCommands.find(c => c.name === commandName);
-            if (!command) return client.bot.chat(`No info found for ${client.config.prefix}${commandName}.`);
+            if (!command) return reply(`No info found for ${client.config.prefix}${commandName}.`);
 
             if (typeof command.handler === "function") {
-                client.bot.chat(`${client.config.prefix}${command.name} - ${command.description}`);
+                reply(`${client.config.prefix}${command.name} - ${command.description}`);
             } else {
                 const subcommandName = args[1];
 
                 if (!subcommandName) {
-                    client.bot.chat(`=== ${client.config.prefix}${command.name} subcommands ===`);
-                    client.bot.chat(command.handler.map(s => s.name).join(", "));
+                    reply(`=== ${client.config.prefix}${command.name} subcommands ===`);
+                    reply(command.handler.map(s => s.name).join(", "));
                 } else {
                     const subcommand = command.handler.find(s => s.name === subcommandName);
                     const fullName = `${client.config.prefix}${command.name} ${subcommandName}`;
-                    if (!subcommand) return client.bot.chat(`No info found for ${fullName}.`);
+                    if (!subcommand) return reply(`No info found for ${fullName}.`);
                     
-                    client.bot.chat(`${fullName} - ${subcommand.description}`);
+                    reply(`${fullName} - ${subcommand.description}`);
                 }
             }
         }

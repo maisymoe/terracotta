@@ -3,8 +3,8 @@ import { Subcommand } from "../../../handlers/command";
 export default new Subcommand({
     name: "stop",
     description: "Stop fighting immediately.",
-    handler: (client) => {
+    handler: (client, args, username, reply) => {
         client.bot.pvp.stop();
-        client.bot.chat("My lust for blood has ended.");
+        reply("My lust for blood has ended.");
     },
 })

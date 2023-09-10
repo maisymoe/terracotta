@@ -10,16 +10,16 @@ const messages = [
 export default new Subcommand({
     name: "attack",
     description: "Fight! Fight! Fight!",
-    handler: async (client, args) => {
+    handler: async (client, args, username, reply) => {
         const name = args[0];
-        if (!name) return client.bot.chat("Invalid arguments! Need a player name.");
+        if (!name) return reply("Invalid arguments! Need a player name.");
 
         const player = client.bot.players[name];
-        if (!player) return client.bot.chat(`I can't see ${name}...`);
+        if (!player) return reply(`I can't see ${name}...`);
 
         client.bot.pvp.attack(player.entity);
 
         const message = messages[getRandomInt(0, messages.length - 1)];
-        client.bot.chat(message.replace(/\$name/g, name));
+        reply(message.replace(/\$name/g, name));
     },
 })

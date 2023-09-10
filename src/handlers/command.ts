@@ -1,8 +1,9 @@
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { TerracottaClient } from "../lib/client";
+import { ReplyFunction } from "./chat";
 
-export type CommandCallback = (client: TerracottaClient, args: string[], username: string) => void | Promise<void>;
+export type CommandCallback = (client: TerracottaClient, args: string[], username: string, reply: ReplyFunction) => void | Promise<void>;
 
 export interface CommandOptions {
     name: string;

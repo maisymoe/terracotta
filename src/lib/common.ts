@@ -1,4 +1,8 @@
-import { client } from ".."
+import { client } from "..";
+
+export const constants = {
+    ESSENTIALS_MSG_PREFIX: "me]",
+}
 
 export const isWhitelisted = (username: string) => [...client.config.superusers, ...client.config.whitelist.users].includes(username);
 export function getRandomInt(min: number, max: number) {
